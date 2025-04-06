@@ -6,20 +6,20 @@ const Login = () => {
   const [password, setpassword] = useState();
   axios.defaults.withCredentials = true;
   const handelSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const result = await axios.post(
-        `https://insta-backend-4-yadw.onrender.com/login`,
-        { name, password }
-      );
-      console.log(result);
-      // if redirect needed:
-      // window.location.href = result.data.redirect;
-    } catch (err) {
-      console.error("Login error:", err);
-      // setShowError(true);
-    }
-  };
+  e.preventDefault();
+  try {
+    const result = await axios.post(
+      `https://insta-backend-4-yadw.onrender.com/login`,
+      { name, password }
+    );
+    console.log(result);
+    // if redirect needed:
+    window.location.href = result.data.redirect;
+  } catch (err) {
+    console.error("Login error:", err);
+    // setShowError(true);
+  }
+};
   
   return (
     <>
