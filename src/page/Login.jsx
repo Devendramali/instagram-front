@@ -5,35 +5,20 @@ const Login = () => {
   const [name, setname] = useState();
   const [password, setpassword] = useState();
   axios.defaults.withCredentials = true;
-  const handelSubmit = (e) => {
+  const handelSubmit = async (e) => {
     e.preventDefault();
-  
-    // if (name === "devendra") {
-      axios
-        .post(`https://insta-backend-4-yadw.onrender.com/login`, { name, password })
-        .then((result) => {
-          console.log(result);
-          // if (result.data.redirect) {
-          //   window.open(result.data.redirect, "_blank"); 
-          // }
-        })
-        .catch((err) => console.log(err));
-    // } else {
-      
-    // }
-    //    if (name === "devendra") {
-    //     axios
-    //     .post("http://localhost:3001/login", { name, password })
-    //     .then((result) => {
-    //       console.log(result);
-    //       if (result.data.redirect) {
-    //         window.open(result.data.redirect, "_blank"); // Open YouTube in new tab
-    //       }
-    //     })
-    //     .catch((err) => console.log(err));
-    // } else {
-      
-    // }
+    try {
+      const result = await axios.post(
+        `https://insta-backend-4-yadw.onrender.com/login`,
+        { name, password }
+      );
+      console.log(result);
+      // if redirect needed:
+      // window.location.href = result.data.redirect;
+    } catch (err) {
+      console.error("Login error:", err);
+      // setShowError(true);
+    }
   };
   
   return (
